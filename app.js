@@ -1,13 +1,12 @@
 const Koa = require("koa")
 const router = require("./router/router")
-const Cors = require("koa-cors")
+const Cors = require("koa2-cors")
+const koaBody = require("koa-body")
 // Koa-router 请求方式： get 、 put 、 post 、 patch 、 delete 、 del 
-const bodyParser = require("koa-bodyparser")
-
 const app = new Koa()
 
-app.use(bodyParser())
 app.use(Cors())
+app.use(koaBody())
 app.use(router.routes())
 app.use(router.allowedMethods({}))
 

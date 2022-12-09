@@ -19,6 +19,7 @@ async function findUser(phone, password) {
 	let sql = `select * from user where userPhone = ${phone}`
 	return allSqlAction.allSqlAction(sql).then(res => {
 		if (res.length == 0) {
+			console.log('插入数据库')
 			return registerUser(phone, password)
 		} else {
 			return {
