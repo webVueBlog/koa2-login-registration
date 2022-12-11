@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<title>上传</title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		上传
+		<input type="file" id="btnFile"/>
+		<input type="button" value="上传" onclick="upload()"/>
+		<script>
+			let btnFile = document.querySelector("#btnFile")
+			const url = "http://localhost:3000/upload"
+			function upload() {
+				// 获取上传文件
+				const file = btnFile.files[0]
+				const formData = new FormData()
+				formData.append('file', file)
+				axios.post(url, formData).then(res => {
+					console.log(res)
+				}).catch(err => {
+					console.log(err, '错误')
+				})
+			}
+		</script>
+	</body>
+</html>
